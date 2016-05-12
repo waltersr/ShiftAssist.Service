@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using ShiftAssist.Interfaces;
 
 namespace ShiftAssist.Models
@@ -10,19 +12,17 @@ namespace ShiftAssist.Models
         public int Id { get; protected set; }
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
-
-        //List<Facility> Facilities { get; set; }
+        
         public virtual List<Shift> Shifts { get; protected set; }
-        public virtual List<Violation> ViolationsToCheck { get; protected set; }
-        public virtual List<Violation> ViolationsOccurred { get; protected set; }
+        public virtual List<Rule> RulesToCheck { get; protected set; }
 
-        public abstract void SetViolationsToCheck();
-        public abstract List<Violation> CheckForViolations();
+        public abstract void SetRulesToCheck();
+        public abstract IList<Violation> CheckForViolations(DateTime start, DateTime end);
 
         public Worker()
         {
-            SetViolationsToCheck();
-            ViolationsOccurred = CheckForViolations();
+            SetRulesToCheck();
+            //ViolationsOccurred = CheckForViolations();
         }
     }
 }

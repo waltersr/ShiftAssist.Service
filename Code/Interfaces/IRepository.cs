@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShiftAssist.Models;
 
+
 namespace ShiftAssist.Interfaces
 {
-    interface IViolationCheck
+    interface IRepository : IDisposable
     {
-        void SetRulesToCheck();
-        IList<Violation> CheckForViolations(DateTime startDt, DateTime endDt);
+        Task<Worker> GetWorker(int id);
+        Task<IList<Worker>> GetWorkers();
     }
 }

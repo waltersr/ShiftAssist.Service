@@ -3,18 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShiftAssist.Models
 {
-    public abstract class Shift
+    public class Shift
     {
-        public int Id;
+        public int Id { get; protected set; }
         public DateTime Start { get; protected set; }
         public DateTime End { get; protected set; }
-        //public Violation Violation { get; set; }
 
-        public virtual bool IsValid()
+
+        public Shift(DateTime start, DateTime end)
         {
-            // TODO: Implement Shift.IsValid().
-            throw new NotImplementedException();
-        }
+            if (start == default(DateTime) || end == default(DateTime) || start >= end)
+                throw new ArgumentOutOfRangeException();
 
+            Start = start;
+            End = end;
+        }
     }
 }

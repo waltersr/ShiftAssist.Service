@@ -2,12 +2,16 @@
 
 namespace ShiftAssist.Models
 {
-    public abstract class Violation
+    public class Violation
     {
-        public string Description { get; protected set; }
+        public Rule RuleViolated { get; set; }
+        public List<Shift> OffendingShifts { get;  set; }
 
-        public virtual List<Shift> OffendingShifts { get; protected set; }
 
-        public abstract bool HasViolationOccurred(List<Shift> workerShifts);
+        public Violation(Rule ruleViolated, List<Shift> shifts)
+        {
+            RuleViolated = ruleViolated;
+            OffendingShifts = shifts;
+        }
     }
 }

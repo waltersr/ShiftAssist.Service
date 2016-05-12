@@ -10,6 +10,5 @@ namespace ShiftAssist.DAL
 
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Shift> Shifts { get; set; }
-        //public DbSet<Violation> Violations { get; set; }
     }
 }
